@@ -1,0 +1,65 @@
+﻿@using FuzzySharp;
+
+<h1 class="text-center">Music Quiz MAIN</h1>
+
+
+<div>
+	<div class="m-5">
+		<label>@currentLyrics</label>
+	</div>
+	<div class="m-5">
+		<button @onclick="revealWord" class="btn btn-primary" style=" visibility: @showingAllLyrics">Reveal next word</button>
+
+	</div>
+	<div class="m-5">
+		<input @bind="userInput" />
+		<button @onclick="checkAnswer">Submit</button>
+	</div>
+</div>
+
+
+@code {
+	int score = 0;
+	int currentSongNumber = 0;
+	string currentLyrics = "";
+	int numberOfLyricsDisplaying = 0;
+	string showingAllLyrics = "visible";
+	string userInput = "";
+
+	[Parameter]
+	public List<string> AllLyrics { get; set; }
+	[Parameter]
+	public string CurrentSong { get; set; }
+
+	private void revealWord()
+	{
+		currentLyrics += AllLyrics[numberOfLyricsDisplaying] + " ";
+		numberOfLyricsDisplaying++;
+
+		if (numberOfLyricsDisplaying >= AllLyrics.Count)
+		{
+			showingAllLyrics = "hidden";			
+		}
+	}
+
+	private void checkAnswer()
+	{
+		//Compare strings
+		CurrentSong = CurrentSong.Replace("-", "");
+		userInput = userInput.Replace(" ", "");
+		Console.WriteLine(userInput);
+		Console.WriteLine(CurrentSong);
+
+		double similarityScore = Fuzz.Ratio(userInput, CurrentSong);
+
+		Console.WriteLine($"Similarity Score: {similarityScore}");
+		if (similarityScore >= 85)
+		{
+			Console.WriteLine("Correct");
+		} else
+		{
+			Console.WriteLine("WRONG");
+		}
+
+	}
+}

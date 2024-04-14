@@ -1,0 +1,36 @@
+﻿@using PortfolioWebAssem.Models;
+
+<input @bind="userInputBandName" />
+<div id="container1" class="d-flex justify-content-center">
+	@* TODO - make a grid instead of list *@
+	<ul>
+		@foreach (Artist artist in MyArtistList)
+		{
+			<li>
+				<button @onclick="() => selectArtistButton(artist)">Choose</button>
+				@artist.Name
+			</li>
+		}
+	</ul>
+</div>
+
+
+@code {
+	[Parameter]
+	public List<Artist> MyArtistList { get; set; } = new();
+
+	public string userInputBandName = "";
+
+	private string StyleForArtistList(int n)
+	{
+		if (n > 100) return "";
+		if (n < 1) return "color:red";
+		return "background:lightgreen";
+	}
+	
+	private void selectArtistButton(Artist artist)
+	{
+		Console.WriteLine(artist.ID);
+
+	}
+}

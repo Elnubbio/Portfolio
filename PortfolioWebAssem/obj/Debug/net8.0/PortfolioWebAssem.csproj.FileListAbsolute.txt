@@ -1029,3 +1029,8 @@ C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.
 C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\refint\PortfolioWebAssem.dll
 C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\PortfolioWebAssem.pdb
 C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\ref\PortfolioWebAssem.dll
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\bin\Debug\net8.0\wwwroot\_framework\FuzzySharp.wasm
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\bin\Debug\net8.0\wwwroot\_framework\FuzzySharp.wasm.gz
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\bin\Debug\net8.0\FuzzySharp.dll
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\webcil\FuzzySharp.wasm
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\compressed\y3bmmchgou.gz

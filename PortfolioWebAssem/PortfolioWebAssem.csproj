@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\MusicQuizPage\Crowley.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\MusicQuizPageWebPlayback.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="wwwroot\ThreejsPage\node_modules\.package-lock.json" />
     <Content Include="wwwroot\ThreejsPage\node_modules\three\examples\fonts\droid\droid_sans_bold.typeface.json" />
     <Content Include="wwwroot\ThreejsPage\node_modules\three\examples\fonts\droid\droid_sans_mono_regular.typeface.json" />
@@ -25,8 +33,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FuzzySharp" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -970,6 +980,11 @@
     <None Include="wwwroot\ThreejsPage\node_modules\three\src\Three.js" />
     <None Include="wwwroot\ThreejsPage\node_modules\three\src\Three.Legacy.js" />
     <None Include="wwwroot\ThreejsPage\node_modules\three\src\utils.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\MusicQuizPage\JSFiles\" />
+    <Folder Include="wwwroot\MusicQuizPage\NewFolder\" />
   </ItemGroup>
 
 </Project>

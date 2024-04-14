@@ -129,10 +129,6 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\sample-data\\weather.json",
-      "PackagePath": "staticwebassets\\sample-data\\weather.json"
-    },
-    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PortfolioWebAssem.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

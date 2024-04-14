@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6KWva+DN0Fdbuaetl7Hg2jMleqti2ByHcYEbGndGCBym5U5XE8WYTfsMgzw5N0MQFKu3H4HEJzJQYg6UpaTjvg==",
+  "dgSpecHash": "p9XKE5sRIuQlLjut2RKOAs8bgAR5zEg8OQeMo4Hd1LTsHlrcA0r4Ps0fAmS4pH9t6MoBAAdPdEu7b8MYcySRAg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\PortfolioWebAssem.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dan PC\\.nuget\\packages\\fuzzysharp\\2.0.2\\fuzzysharp.2.0.2.nupkg.sha512",
     "C:\\Users\\Dan PC\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.3\\microsoft.aspnetcore.authorization.8.0.3.nupkg.sha512",
     "C:\\Users\\Dan PC\\.nuget\\packages\\microsoft.aspnetcore.components\\8.0.3\\microsoft.aspnetcore.components.8.0.3.nupkg.sha512",
     "C:\\Users\\Dan PC\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\8.0.3\\microsoft.aspnetcore.components.analyzers.8.0.3.nupkg.sha512",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OMXp5Y0E9vozmjT9pJRNuJgiSa0qQZofuiZzeYPkV0U=",
+  "Hash": "Zqw1iD/mHMDu0ha8L5J0izr+mlszaLGcbmbu+Z1W/Bc=",
   "Source": "PortfolioWebAssem",
   "BasePath": "/",
   "Mode": "Root",
@@ -167,6 +167,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Dan PC\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.3\\runtimes\\browser-wasm\\native\\dotnet.runtime.js.map"
+    },
+    {
+      "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Debug\\net8.0\\wwwroot\\_framework\\FuzzySharp.wasm",
+      "SourceId": "PortfolioWebAssem",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/FuzzySharp.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Debug\\net8.0\\webcil\\FuzzySharp.wasm"
     },
     {
       "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Debug\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat",
@@ -7541,6 +7560,25 @@
       "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Collections.Immutable.wasm"
     },
     {
+      "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Debug\\net8.0\\compressed\\y3bmmchgou.gz",
+      "SourceId": "PortfolioWebAssem",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Debug\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/FuzzySharp.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Debug\\net8.0\\wwwroot\\_framework\\FuzzySharp.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Debug\\net8.0\\wwwroot\\_framework\\FuzzySharp.wasm"
+    },
+    {
       "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Debug\\net8.0\\compressed\\y60sluut3w.gz",
       "SourceId": "PortfolioWebAssem",
       "SourceType": "Computed",
@@ -7995,25 +8033,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
-    },
-    {
-      "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\sample-data\\weather.json",
-      "SourceId": "PortfolioWebAssem",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\",
-      "BasePath": "/",
-      "RelativePath": "sample-data/weather.json",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\sample-data\\weather.json"
     },
     {
       "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\ThreejsPage\\colourhandler.js",

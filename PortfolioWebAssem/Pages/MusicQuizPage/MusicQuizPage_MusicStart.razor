@@ -1,0 +1,18 @@
+﻿<h1 class="text-center">Start Music Quiz</h1>
+
+<div id="container" class="d-flex justify-content-center h-50">
+	<button class="btn btn-primary" @onclick="goToQuiz">Start Music Quiz</button>
+</div>
+
+@* <button>Show High Scores</button> *@
+
+
+@code {
+	[Parameter]
+	public EventCallback StartQuiz{ get; set; }
+
+	private async Task goToQuiz()
+	{
+		await StartQuiz.InvokeAsync();
+	}
+}
