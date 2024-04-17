@@ -1034,3 +1034,8 @@ C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\bin\Debug\net8.
 C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\bin\Debug\net8.0\FuzzySharp.dll
 C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\webcil\FuzzySharp.wasm
 C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\compressed\y3bmmchgou.gz
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\bin\Debug\net8.0\wwwroot\_framework\Newtonsoft.Json.wasm
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\bin\Debug\net8.0\wwwroot\_framework\Newtonsoft.Json.wasm.gz
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\webcil\Newtonsoft.Json.wasm
+C:\Users\Dan PC\source\repos\PortfolioWebAssem\PortfolioWebAssem\obj\Debug\net8.0\compressed\vfohbt7pkv.gz

@@ -1,6 +1,8 @@
 ﻿@using PortfolioWebAssem.Models;
+@using PortfolioWebAssem.Models2;
 
 <input @bind="userInputBandName" />
+<button @onclick="searchButton">Search</button>
 <div id="container1" class="d-flex justify-content-center">
 	@* TODO - make a grid instead of list *@
 	<ul>
@@ -8,7 +10,7 @@
 		{
 			<li>
 				<button @onclick="() => selectArtistButton(artist)">Choose</button>
-				@artist.Name
+				<div class ="d-inline" style="@styleForArtistList(artist.IsSelected)">@artist.Name</div>
 			</li>
 		}
 	</ul>
@@ -19,18 +21,54 @@
 	[Parameter]
 	public List<Artist> MyArtistList { get; set; } = new();
 
+	[Parameter]
+	public EventCallback<string> fetchArtistIds { get; set; }
+
+	private Artist selectedArtist = new();
+
 	public string userInputBandName = "";
+	public string searchBandName = "";
 
-	private string StyleForArtistList(int n)
+	private async Task searchButton()
 	{
-		if (n > 100) return "";
-		if (n < 1) return "color:red";
-		return "background:lightgreen";
+		MyArtistList.Clear();
+		searchBandName = userInputBandName;
+		await fetchArtistIdsAL(searchBandName);
 	}
-	
-	private void selectArtistButton(Artist artist)
-	{
-		Console.WriteLine(artist.ID);
 
+	private async Task fetchArtistIdsAL(string artistName)
+	{
+		await fetchArtistIds.InvokeAsync(artistName);
 	}
+
+	private async Task selectArtistButton(Artist artist)
+	{	
+
+		selectedArtist.IsSelected = false;
+		selectedArtist = artist;
+		selectedArtist.IsSelected = true;
+
+		GeniusAPIClient myClient = new();
+		// string accessToken = await myClient.getAccessToken();
+		string accessToken = "test";
+		string artistId = await myClient.getArtistId(artist.Name, accessToken);
+		Console.WriteLine($"ArtistID: {artistId}");
+		List<string> songList = await myClient.getSongTitles(artistId, accessToken);
+		Console.WriteLine(songList);
+		foreach (string songTitle in songList)
+		{
+			Console.WriteLine(songTitle);
+		}
+	}
+
+
+	private string styleForArtistList(bool isSelected)
+	{	
+		if (isSelected)
+		{
+			return "color:red";
+		}
+		return "color:black";
+	}
+
 }

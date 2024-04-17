@@ -5,8 +5,6 @@
 @using PortfolioWebAssem.Models;
 
 <PageTitle>Music Quiz</PageTitle>
-<button @onclick='() => fetchArtistIds("linkin-park")'>HELLO</button>
-<ArtistList MyArtistList=@artistList />
 
 @* Console.WriteLine(fetchArtistId("linkin-park")); *@
 @* <button @onclick="goToStart">Go to Start</button>
@@ -24,6 +22,7 @@ else if (state == eMusicState.Quiz)
 else if (state == eMusicState.Start)
 {
 	<MusicQuizPage_MusicStart StartQuiz="goToQuiz"/>
+	<ArtistList MyArtistList=@artistList fetchArtistIds="fetchArtistIds" />
 	
 }
 
@@ -62,8 +61,6 @@ else if (state == eMusicState.Start)
 		Console.WriteLine(LyricsFromFetch);
 	}
 
-
-
 	List<Artist> artistList = new();
 	private async Task<ArtistResponse> fetchArtistIds(string artistName)
 	{
@@ -71,24 +68,19 @@ else if (state == eMusicState.Start)
 		var response = await httpClient.SendAsync(httpRequestMessage);
 		var returnObject = await response.Content.ReadFromJsonAsync<ArtistResponse>();
 
-		foreach (Artist a in returnObject.Artists)
-		{
-			artistList.Add(a);
-		};
-
+		artistList = returnObject.Artists.Take(10).ToList();
+		// artistList.DistinctBy((a) => a.Name);
 		return returnObject;
-
 	}
 
 	
 
-	private async Task<List<string>> fetchLyricsAsync(string artistName, string songName){
+	private async Task<List<string>> fetchLyricsAsync(string artistName, string songName) {
 		var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://api.lyrics.ovh/v1/{artistName}/{songName}");
 		var response = await httpClient.SendAsync(httpRequestMessage);
-
-
 		return getLyricSnippet(await response.Content.ReadAsStringAsync());
 	}
+
 
 	private List<string> getLyricSnippet(string response){
 		int wordCount = 10;
