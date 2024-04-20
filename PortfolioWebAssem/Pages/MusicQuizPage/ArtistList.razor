@@ -1,8 +1,14 @@
 ﻿@using PortfolioWebAssem.Models;
 @using PortfolioWebAssem.Models2;
+@using System.Text.RegularExpressions
 
-<input @bind="userInputBandName" />
-<button @onclick="searchButton">Search</button>
+<br />
+<div class="d-flex justify-content-center">
+	<input @bind="userInputBandName" />
+	<button @onclick="searchButton">Search</button>
+</div>
+
+<br />
 <div id="container1" class="d-flex justify-content-center">
 	@* TODO - make a grid instead of list *@
 	<ul>
@@ -12,6 +18,7 @@
 				<button @onclick="() => selectArtistButton(artist)">Choose</button>
 				<div class ="d-inline" style="@styleForArtistList(artist.IsSelected)">@artist.Name</div>
 			</li>
+			<br>
 		}
 	</ul>
 </div>
@@ -24,10 +31,20 @@
 	[Parameter]
 	public EventCallback<string> fetchArtistIds { get; set; }
 
+	[Parameter]
+	public EventCallback<List<List<string>>> setLyrics { get; set; }
+
 	private Artist selectedArtist = new();
 
 	public string userInputBandName = "";
 	public string searchBandName = "";
+
+
+
+	private async Task fetchArtistIdsAL(string artistName)
+	{
+		await fetchArtistIds.InvokeAsync(artistName);
+	}
 
 	private async Task searchButton()
 	{
@@ -36,31 +53,121 @@
 		await fetchArtistIdsAL(searchBandName);
 	}
 
-	private async Task fetchArtistIdsAL(string artistName)
-	{
-		await fetchArtistIds.InvokeAsync(artistName);
-	}
 
 	private async Task selectArtistButton(Artist artist)
 	{	
-
+		//reset
 		selectedArtist.IsSelected = false;
 		selectedArtist = artist;
 		selectedArtist.IsSelected = true;
 
+		//first get id of artist then use that id to retrieve list of songs
 		GeniusAPIClient myClient = new();
-		// string accessToken = await myClient.getAccessToken();
-		string accessToken = "test";
-		string artistId = await myClient.getArtistId(artist.Name, accessToken);
+		string artistId = await myClient.GetArtistId(artist.Name);
 		Console.WriteLine($"ArtistID: {artistId}");
-		List<string> songList = await myClient.getSongTitles(artistId, accessToken);
-		Console.WriteLine(songList);
+
+		List<string> songList = await myClient.GetSongTitles(artistId);
+
 		foreach (string songTitle in songList)
 		{
 			Console.WriteLine(songTitle);
 		}
+
+
+		List<string> lyricSnippet = new();
+		List<List<string>> lyricSnippets = new();
+		foreach(string song in songList)
+		{
+			lyricSnippet = getLyricSnippet(song);
+			if (lyricSnippet.Count == 10) {
+
+				lyricSnippets.Add(lyricSnippet);
+			}
+			if (lyricSnippets.Count == 10)
+			{
+				await setLyrics.InvokeAsync(lyricSnippets);
+				return;
+			}
+		}
+
+		// return await getLyricSnippetAL(songList.FirstOrDefault());
+
+
+
 	}
 
+
+	private List<string> getLyricSnippet(string response)
+	{
+		//Give me wordCount amount of words from response. Has to start at the beginning of a sentence.
+
+		int wordCount = 10;
+
+		//remove start info + all [SINGER NAME] occurences
+		string pattern = "\"lyrics\".*?\\n|\\[[^\\]]*\\]";
+		Regex regex = new Regex(pattern);
+		string result = regex.Replace(response, "");
+
+		//remove start - could redo regex filter to remove this part
+		int returnIndex = result.IndexOf("\\r") + 2;
+		string stringWithoutStart = result.Substring(returnIndex);
+		//remove end - remove "}
+		string stringWithoutEnd = stringWithoutStart.Substring(0, stringWithoutStart.Length - 2);
+		//split strings to list
+		List<string> lyricLinesWithNewLines = stringWithoutEnd.Split("\\n").ToList();
+		List<string> songLyricsSentences = lyricLinesWithNewLines.Where((s) => s.Length > 1).ToList();
+
+		Console.WriteLine(response);
+
+		int maxStartingIndex = getMaxStartingIndex(songLyricsSentences, wordCount);
+		Random rand = new Random();
+		int startingIndex = rand.Next(0, maxStartingIndex);
+
+		List<string> finalLyricLine = new();
+		int currentWordCount = 0;
+		for (int i = startingIndex; i < songLyricsSentences.Count; i++)
+		{
+			string sentence = songLyricsSentences[i];
+			List<string> sentenceWords = sentence.Split(" ").ToList();
+			foreach (string word in sentenceWords)
+			{
+				finalLyricLine.Add(word);
+				currentWordCount++;
+				if (currentWordCount >= wordCount)
+				{
+					Console.WriteLine(finalLyricLine);
+					return finalLyricLine;
+				}
+			}
+		}
+		return ["oops"];
+	}
+
+	private int getMaxStartingIndex(List<string> songLyrics, int maxWordCount)
+	{
+		//What is the last possible sentence I can choose to make sure that I have at least maxWordCount amount of words to display
+
+		//reverse list
+		songLyrics.Reverse();
+
+		//count words
+		int currentWordCount = 0;
+		int loopCounter = 0;
+
+		//add words one sentence at a time until maxWordCount
+		foreach (string sentence in songLyrics)
+		{
+			int numOfWords = sentence.Split(" ").Count();
+			currentWordCount += numOfWords;
+			if (currentWordCount > maxWordCount)
+			{
+				songLyrics.Reverse();
+				return songLyrics.Count - loopCounter - 1;
+			}
+			loopCounter++;
+		}
+		return -1;
+	}
 
 	private string styleForArtistList(bool isSelected)
 	{	

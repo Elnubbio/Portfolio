@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace PortfolioWebAssem.Models
+﻿namespace PortfolioWebAssem.Models
 {
 	public class ArtistIDResponse
 	{

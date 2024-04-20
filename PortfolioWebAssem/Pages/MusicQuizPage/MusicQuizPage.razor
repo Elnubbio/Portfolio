@@ -17,12 +17,12 @@
 }
 else if (state == eMusicState.Quiz)
 {
-	<MusicQuizPage_Quiz AllLyrics=@LyricsFromFetch CurrentSong=@currentSong />
+	<MusicQuizPage_Quiz AllLyrics=@lyricsList />
 }
 else if (state == eMusicState.Start)
 {
 	<MusicQuizPage_MusicStart StartQuiz="goToQuiz"/>
-	<ArtistList MyArtistList=@artistList fetchArtistIds="fetchArtistIds" />
+	<ArtistList MyArtistList=@artistList fetchArtistIds="fetchArtistIds" setLyrics="setLyrics"/>
 	
 }
 
@@ -50,20 +50,20 @@ else if (state == eMusicState.Start)
 		state = eMusicState.Quiz;
 	}
 
-	string currentArtist = "linkin-park";
-	string currentSong = "breaking-the-habit";
+	//TESTING SONG - replace artist with user selection + song with random song from geniusAPI fetched list
+	// string currentArtist = "linkin-park";
+	// string currentSong = "breaking-the-habit";
 
-	List<string> LyricsFromFetch = new();
-	protected override async Task OnInitializedAsync()
-	{	
-		LyricsFromFetch = await fetchLyricsAsync(currentArtist, currentSong);
-
-		Console.WriteLine(LyricsFromFetch);
-	}
+	// List<string> LyricsFromFetch = new();
+	// protected override async Task OnInitializedAsync()
+	// {	
+	// 	LyricsFromFetch = await fetchLyricsAsync(currentArtist, currentSong);
+	// }
 
 	List<Artist> artistList = new();
 	private async Task<ArtistResponse> fetchArtistIds(string artistName)
 	{
+		//MUSICBRAINZ FETCH - gives a list of 10 possible artists that match the given artistName
 		var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://musicbrainz.org/ws/2/artist/?query={artistName}&fmt=json");
 		var response = await httpClient.SendAsync(httpRequestMessage);
 		var returnObject = await response.Content.ReadFromJsonAsync<ArtistResponse>();
@@ -73,74 +73,31 @@ else if (state == eMusicState.Start)
 		return returnObject;
 	}
 
-	
-
-	private async Task<List<string>> fetchLyricsAsync(string artistName, string songName) {
-		var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://api.lyrics.ovh/v1/{artistName}/{songName}");
-		var response = await httpClient.SendAsync(httpRequestMessage);
-		return getLyricSnippet(await response.Content.ReadAsStringAsync());
-	}
 
 
-	private List<string> getLyricSnippet(string response){
-		int wordCount = 10;
-		string pattern = "\"lyrics\".*?\\n|\\[[^\\]]*\\]";
-		Regex regex = new Regex(pattern);
-		string result = regex.Replace(response, "");
+	// private async Task<List<string>> fetchLyricsAsync(string artistName, string songName) {
+	// 	//LYRICS API FETCH - gives the lyrics for a given artist and song
+	// 	//Maybe change this out for the genius api? but then have to rewrite getLyricSnippet
+	// 	//possible problem with mismatch between geniusAPI song name and this lyric's api song name
+	// 	var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://api.lyrics.ovh/v1/{artistName}/{songName}");
+	// 	var response = await httpClient.SendAsync(httpRequestMessage);
+	// 	return await getLyricSnippet(await response.Content.ReadAsStringAsync());
+	// }
 
-		//remove start
-		int returnIndex = result.IndexOf("\\r") + 2;
-		string stringWithoutStart = result.Substring(returnIndex);
-		//remove end
-		string stringWithoutEnd = stringWithoutStart.Substring(0, stringWithoutStart.Length - 2);
-		//split strings to list
-		List<string> lyricLinesWithNewLines = stringWithoutEnd.Split("\\n").ToList();
-		List<string> songLyrics = lyricLinesWithNewLines.Where((s) => s.Length > 1).ToList();
+	List<List<string>> lyricsList = new();
 
-		int maxStartingIndex = getMaxStartingIndex(songLyrics, wordCount);
-		Random rand = new Random();
-		int startingIndex = rand.Next(0, maxStartingIndex);
 
-		List<string> finalLyricLine = new();
-
-		int currentWordCount = 0;
-		for (int i = startingIndex; i < songLyrics.Count; i++)
+	private async Task setLyrics(List<List<string>> lyrics)
+	{
+		lyricsList = lyrics;
+		foreach(List<string> lyric in lyricsList)
 		{
-			string sentence = songLyrics[i];
-			List<string> sentenceWords = sentence.Split(" ").ToList();
-			foreach (string word in sentenceWords)
+			foreach(string word in lyric)
 			{
-				finalLyricLine.Add(word);
-				currentWordCount++;
-				if (currentWordCount >= wordCount)
-				{
-					Console.WriteLine(finalLyricLine);
-					return finalLyricLine;
-				}
+				Console.Write(word);
 			}
+			Console.WriteLine(" ");
 		}
-		return new List<string>();
 	}
 
-	private int getMaxStartingIndex(List<string> songLyrics, int maxWordCount){
-
-		//reverse list
-		songLyrics.Reverse();
-
-		//count words
-		int currentWordCount = 0;
-		int loopCounter = 0;
-		foreach (string sentence in songLyrics)
-		{
-			int numOfWords = sentence.Split(" ").Count();
-			currentWordCount += numOfWords;
-			if (currentWordCount > maxWordCount)
-			{
-				songLyrics.Reverse();
-				return songLyrics.Count - loopCounter - 1;
-			}
-			loopCounter++;
-		}
-		return -1;
-	}
 }
