@@ -1,72 +1,155 @@
 ﻿@using FuzzySharp;
+@using PortfolioWebAssem.Models
 
-<h1 class="text-center">Music Quiz MAIN</h1>
-
-
+<h1 class="text-center">Music Quiz</h1>
+<div class="d-flex justify-content-end">
+	<h2>Score: @score / @maxPossibleScore</h2>
+</div>
+<div class="d-flex justify-content-end">
+	<h3>Song number: @displaySongNumber / @SongDetailsList.Count()</h3>
+</div>
 
 <div class="d-flex justify-content-center m-5">
 	<label>@currentLyrics</label>
 </div>
 
 <div class="d-flex justify-content-center m-5">
-	<button @onclick="revealWord" class="btn btn-primary" style=" visibility: @showingAllLyrics">Reveal next word</button>
+	<button @onclick="revealWord" class="btn btn-primary" style=" visibility: @revealWordButtonVisibility">Reveal next word</button>
 </div>
 
 <div class="d-flex justify-content-center m-5">
 	<input @bind="userInput"/>
 	<button @onclick="checkAnswer">Submit</button>
+	<button @onclick="nextSong">Skip</button>
 </div>
-
 
 @code 
 {
 	int score = 0;
-	string CurrentSong = "";
-	int currentSongNumber = 0;
+	int maxPossibleScore = 0;
+	int scoreToAdd = 0;
+	string CurrentSongTitle = "";
+	//start at -1 if no song selected. go to 0 when game starts i.e song has been chosen and ready to display lyrics
+	int currentSongNumber = -1;
+	int displaySongNumber = 1;
 	string currentLyrics =  " ";
 	int numberOfLyricsDisplaying = 0;
-	string showingAllLyrics = "visible";
+	string revealWordButtonVisibility = "visible";
 	string userInput = "";
+	string userInputCheckString = "";
+
+	// [Parameter]
+	// public List<List<string>> AllLyrics { get; set; }
 
 	[Parameter]
-	public List<List<string>> AllLyrics { get; set; }
+	public EventCallback<int> GoToQuizOver { get; set; }
 
-	private string chooseSentence()
+
+	private async Task EndQuiz()
 	{
-		Random rand = new();
-		int index = rand.Next(0, AllLyrics.Count());
-		return AllLyrics[currentSongNumber][index];
+		await GoToQuizOver.InvokeAsync(score);
 	}
-	//TODO fix button moving when first word appears
+
+	[Parameter]
+	public List<SongDetails> SongDetailsList {get; set;}
+
+	protected override void OnInitialized()
+	{
+		SongDetailsList = shuffleSentences(SongDetailsList);
+		maxPossibleScore = SongDetailsList.Count() * 100;
+		currentSongNumber++;
+	}
+
+	private List<SongDetails> shuffleSentences(List<SongDetails> songDetailsList)
+	//randomise order of songs
+	{
+		List<SongDetails> newList = songDetailsList.OrderBy(_ => Guid.NewGuid()).ToList();
+		//Testing randomness
+		// foreach(SongDetails SD in newList)
+		// {
+		// 	Console.WriteLine($"{SD.ID} + {SD.SongName}");
+		// }
+		return newList;
+	}
+
 	private void revealWord()
 	{
-		currentLyrics += AllLyrics[currentSongNumber][numberOfLyricsDisplaying] + " ";
+
+		currentLyrics += SongDetailsList[currentSongNumber].Lyrics[numberOfLyricsDisplaying] + " ";
 		numberOfLyricsDisplaying++;
 
-		if (numberOfLyricsDisplaying >= AllLyrics.Count)
+		if (numberOfLyricsDisplaying >= 10)
 		{
-			showingAllLyrics = "hidden";			
+			revealWordButtonVisibility = "hidden";
 		}
 	}
 
 	private void checkAnswer()
 	{
 		//Compare strings
-		CurrentSong = CurrentSong.Replace("-", "");
-		userInput = userInput.Replace(" ", "");
-		Console.WriteLine(userInput);
-		Console.WriteLine(CurrentSong);
+		CurrentSongTitle = SongDetailsList[currentSongNumber].SongName.Replace(" ", "").ToLower();
+		userInputCheckString = userInput.Replace(" ", "").ToLower();
+		Console.WriteLine(CurrentSongTitle);
+		Console.WriteLine(userInputCheckString);
 
-		double similarityScore = Fuzz.Ratio(userInput, CurrentSong);
+		double similarityScore = Fuzz.Ratio(userInputCheckString, CurrentSongTitle);
 
 		Console.WriteLine($"Similarity Score: {similarityScore}");
 		if (similarityScore >= 85)
-		{
+		{	
+			if (numberOfLyricsDisplaying == 1)
+			{
+				scoreToAdd = 100;
+			}
+			else if (numberOfLyricsDisplaying == 0)
+			{
+				scoreToAdd = -100;
+			}
+			else if (numberOfLyricsDisplaying == 10)
+			{
+				scoreToAdd = 10;
+			} 
+			else
+			{
+				scoreToAdd = 100 - (numberOfLyricsDisplaying * 10);
+			}
+			score += scoreToAdd;
+			nextSong();
 			Console.WriteLine("Correct");
 		} else
 		{
 			Console.WriteLine("WRONG");
 		}
 
+	}
+
+	private async void nextSong()
+	{
+		//called when the song is guessed correctly
+		//reset everything
+		currentLyrics = " ";
+		numberOfLyricsDisplaying = 0;
+		revealWordButtonVisibility = "visible";
+		userInput = "";
+
+		displaySongNumber++;
+		currentSongNumber++;
+		Console.WriteLine($"{currentSongNumber} / {SongDetailsList.Count()}");
+		if (isQuizOver())
+		{
+			await EndQuiz();
+		}
+	}
+
+	private void skipSong()
+	{
+		//add no points
+
+		nextSong();
+	}
+
+	private bool isQuizOver()
+	{
+		return currentSongNumber >= SongDetailsList.Count();
 	}
 }

@@ -16,8 +16,10 @@ namespace PortfolioWebAssem.Pages.MusicQuizPage
 	public class GeniusAPIClient
 	{
 		private readonly string _apiKey = "RpBaUk-iRsnuJJ8ozLN7ZCjSQyd-MU4Vnp2F2HxOllHYPRpVRgooijV63QEToIdT";
+		public string NewArtistName = "";
 
 		public async Task<string> GetArtistId(string artistName)
+		//returns Genius API's Artist ID for a selected artist.
 		{
 			string _fetchURLForArtistID = $"https://api.genius.com/search?q={artistName}&access_token={_apiKey}";
 			HttpClient httpClient = new();
@@ -33,23 +35,25 @@ namespace PortfolioWebAssem.Pages.MusicQuizPage
 			if (returnObject.response.hits.Count > 0)
 			{
 				artistID = returnObject.response.hits.FirstOrDefault().result.primary_Artist.id.ToString();
+				NewArtistName = returnObject.response.hits.FirstOrDefault().result.primary_Artist.name.ToString();
 			}
 
 			} catch (Exception e)
 			{
-				Console.WriteLine(e);
+				Console.WriteLine($"Could not find artistID for {artistName}. Exception: ", e);
 			}
 			return artistID;
 		}
 
 		public async Task<List<string>> GetSongTitles(string artistId)
+		//returns Genius API's Song Titles using Genius API's Artist ID. Returns 20 song titles - can be increased
 		{
+			string _fetchURLForSongs = $"https://api.genius.com/artists/{artistId}/songs?sort=popularity&access_token={_apiKey}";
 			List<Song> songsFromFetch = new();
 			List<string> songTitles = new();
-			string _fetchURLForSongs = $"https://api.genius.com/artists/{artistId}/songs?sort=popularity&access_token={_apiKey}";
 			HttpClient httpClient = new();
 
-			//sometimes the api returns an empty string for artistID since response.hits is empty - see "1StepKloser", so skip fetch
+			//sometimes the api returns an empty string for artistId since response.hits is empty - see "1StepKloser", so skip fetch
 			if (artistId != "")
 			{
 				try
@@ -59,19 +63,19 @@ namespace PortfolioWebAssem.Pages.MusicQuizPage
 					var response = await httpClient.SendAsync(httpRequestMessage);
 					var returnObject = await response.Content.ReadFromJsonAsync<SongsResponse>();
 
-					//put song titles in the list and return
 					songsFromFetch = returnObject.response.songs;
+					//put song titles in my list
 					foreach (Song song in songsFromFetch)
 					{
 						songTitles.Add(song.title);
 					}
-					//songTitles.OrderBy(_ => Guid.NewGuid());
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine(e);
+					Console.WriteLine($"Could not find song titles for {artistId}. Exception: ", e);
 				}
 			}
+			//20 song titles
 			return songTitles;
 		}
 		

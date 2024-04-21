@@ -93,6 +93,10 @@
       "PackagePath": "staticwebassets\\assets\\homepage\\JavaCover.png"
     },
     {
+      "Id": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\assets\\homepage\\MusicQuizCover.png",
+      "PackagePath": "staticwebassets\\assets\\homepage\\MusicQuizCover.png"
+    },
+    {
       "Id": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\assets\\homepage\\PokefetchCover.png",
       "PackagePath": "staticwebassets\\assets\\homepage\\PokefetchCover.png"
     },

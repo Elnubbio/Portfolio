@@ -1,15 +1,22 @@
-﻿<h1 class="text-center">Start Music Quiz</h1>
+﻿@using PortfolioWebAssem.Models
+<h1 class="text-center">Music Quiz</h1>
 
 
 
 <div id="container" class="d-flex justify-content-center h-50">
-	<button class="btn btn-primary" @onclick="goToQuiz">Start Music Quiz</button>
+	<button class="btn btn-primary" @onclick="goToQuiz" style=" visibility: @startQuizButtonVisibility">Start Music Quiz</button>
 </div>
 
 @* <button>Show High Scores</button> *@
 
 
 @code {
+	
+
+	
+	[Parameter]
+	public string startQuizButtonVisibility { get; set; }
+
 	[Parameter]
 	public EventCallback StartQuiz{ get; set; }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IuXFp+AtcHMTFAPTkLfJCLSbanpNC+PaZsS3CMAXDWE=",
+  "Hash": "aW8PsN7CUxXU8wsH8CD5V9kJl+fbIe1+9FDYkEzA970=",
   "Source": "PortfolioWebAssem",
   "BasePath": "/",
   "Mode": "Root",
@@ -167,6 +167,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Dan PC\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.3\\runtimes\\browser-wasm\\native\\dotnet.runtime.js.map"
+    },
+    {
+      "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\FuzzySharp.wasm",
+      "SourceId": "PortfolioWebAssem",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/FuzzySharp.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Release\\net8.0\\webcil\\FuzzySharp.wasm"
     },
     {
       "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\icudt_CJK.dat",
@@ -775,6 +794,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Release\\net8.0\\webcil\\netstandard.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\Newtonsoft.Json.wasm",
+      "SourceId": "PortfolioWebAssem",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Release\\net8.0\\webcil\\Newtonsoft.Json.wasm"
     },
     {
       "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\PortfolioWebAssem.pdb",
@@ -6591,6 +6629,25 @@
       "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\mscorlib.wasm"
     },
     {
+      "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Release\\net8.0\\compressed\\nw41ewmh7g.gz",
+      "SourceId": "PortfolioWebAssem",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\Newtonsoft.Json.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\Newtonsoft.Json.wasm"
+    },
+    {
       "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Release\\net8.0\\compressed\\nybhscombx.gz",
       "SourceId": "PortfolioWebAssem",
       "SourceType": "Computed",
@@ -6665,6 +6722,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\System.Net.Mail.wasm"
+    },
+    {
+      "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Release\\net8.0\\compressed\\ot5pwf8w0y.gz",
+      "SourceId": "PortfolioWebAssem",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/FuzzySharp.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\FuzzySharp.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\bin\\Release\\net8.0\\wwwroot\\_framework\\FuzzySharp.wasm"
     },
     {
       "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\Release\\net8.0\\compressed\\p20zuybtae.gz",
@@ -7824,6 +7900,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\homepage\\JavaCover.png"
+    },
+    {
+      "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\assets\\homepage\\MusicQuizCover.png",
+      "SourceId": "PortfolioWebAssem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "assets/homepage/MusicQuizCover.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\homepage\\MusicQuizCover.png"
     },
     {
       "Identity": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\wwwroot\\assets\\homepage\\PokefetchCover.png",

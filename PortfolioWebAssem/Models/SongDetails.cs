@@ -8,8 +8,8 @@
 
         public SongDetails(int id, string songName, List<String> lyrics)
         {
-			ID = id; 
-			SongName = songName; 
+			ID = id;
+			SongName = songName;
 			Lyrics = lyrics;
         }
     }

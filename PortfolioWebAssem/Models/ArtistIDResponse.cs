@@ -23,5 +23,7 @@
 	public class PrimaryArtist
 	{
 		public int id { get; set; }
+		//actually gonna use this name from now on to make sure matches line up \/
+		public string name { get; set; }
 	}
 }
