@@ -26,7 +26,7 @@ else if (state == eMusicState.Quiz)
 else if (state == eMusicState.Start)
 {
 	<MusicQuizPage_MusicStart startQuizButtonVisibility=@startQuizButtonVisibility StartQuiz="goToQuiz" />
-	<ArtistList setSongs="setSongs"/>
+	<ArtistList setSongs="setSongs" startQuizButtonVisibility=@startQuizButtonVisibility />
 	
 }
 
@@ -49,6 +49,7 @@ else if (state == eMusicState.Start)
 		//reset
 		SongDetailsList.Clear();
 		startQuizButtonVisibility = "hidden";
+
 	}
 
 	private void goToQuiz()
@@ -61,6 +62,11 @@ else if (state == eMusicState.Start)
 		score = finalScore;
 		state = eMusicState.Over;
 	}
+
+	// private async Task resetArtistList()
+	// {
+		
+	// }
 
 	//TESTING SONG - replace artist with user selection + song with random song from geniusAPI fetched list
 	// string currentArtist = "linkin-park";

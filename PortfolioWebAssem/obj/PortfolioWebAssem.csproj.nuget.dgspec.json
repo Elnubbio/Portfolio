@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\PortfolioWebAssem.csproj": {}
+    "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\PortfolioWebAssem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\PortfolioWebAssem.csproj": {
+    "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\PortfolioWebAssem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\PortfolioWebAssem.csproj",
+        "projectUniqueName": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\PortfolioWebAssem.csproj",
         "projectName": "PortfolioWebAssem",
-        "projectPath": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\PortfolioWebAssem.csproj",
+        "projectPath": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\PortfolioWebAssem.csproj",
         "packagesPath": "C:\\Users\\Dan PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dan PC\\source\\repos\\PortfolioWebAssem\\PortfolioWebAssem\\obj\\",
+        "outputPath": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dan PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

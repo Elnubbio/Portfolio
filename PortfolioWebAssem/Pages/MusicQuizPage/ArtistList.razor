@@ -5,24 +5,56 @@
 @inject HttpClient httpClient;
 
 <br />
-<div class="d-flex justify-content-center">
-	<input @bind="userInputBandName" />
-	<button @onclick="searchButton">Search</button>
-</div>
+<div class="container-fluid">
+	<div class="row">
+		@*blank column to center mid column. find a way to shrink this as column 3 expands*@
+		<div class="col-3"></div>
+		<div class="col-6">
+			@* MAKE THIS GO INVISIBLE ONCE SEARCH BUTTON IS PRESSED *@
+			<div class="d-flex justify-content-center">
+				<span style="visibility: @artistSearchPrompt">Search for an artist to begin fetching song snippets</span>
+			</div>
+			<br />
 
-<br />
-<div id="container1" class="d-flex justify-content-center">
-	@* TODO - make a grid instead of list *@
-	<ul>
-		@foreach (Artist artist in MyArtistList)
-		{
-			<li>
-				<button @onclick="() => selectArtistButton(artist)">Choose</button>
-				<div class ="d-inline" style="@styleForArtistList(artist.IsSelected)">@artist.Name</div>
-			</li>
-			<br>
-		}
-	</ul>
+			<div class="d-flex justify-content-center">
+				<br />
+				<input @bind="userInputBandName" />
+				<button @onclick="searchButton">Search</button>
+			</div>
+
+			<br />
+			<div id="container1" class="d-flex justify-content-center">
+				@* TODO - make a grid instead of list *@
+				<ul>
+					@foreach (Artist artist in MyArtistList)
+					{
+						<li>
+							<button @onclick="() => selectArtistButton(artist)">Choose</button>
+							<div class ="d-inline" style="@styleForArtistList(artist.IsSelected)">@artist.Name</div>
+						</li>
+						<br>
+					}
+				</ul>
+			</div>
+		</div>
+		<div class="col-3">
+			@*MAKE VISIBLE ONLY WHEN selectedArtist.Name.Size>0*@
+			<span class="d-flex justify-content-center" style="visibility: @fetchingLyricsHeading">Fetching lyrics for @myClient.NewArtistName</span>
+			<br />
+			<div id="songsFoundContainer d-flex justify-content-center">
+				@if(songList.Count>0){
+				<ul>
+						@foreach (SongDetails songInfo in songInfos)
+					{
+						<li>
+							@songInfo.SongName
+						</li>
+					}
+				</ul>
+				}
+			</div>
+		</div>
+	</div>
 </div>
 
 
@@ -34,21 +66,25 @@
 	[Parameter]
 	public EventCallback<List<SongDetails>> setSongs { get; set; }
 
+	[Parameter]
+	public string startQuizButtonVisibility { get; set; }
+
 	private Artist selectedArtist = new();
 
 	private string userInputBandName = "";
+	string artistSearchPrompt = "visible";
+	string fetchingLyricsHeading = "hidden";
 
-
-	private async Task<ArtistResponse> fetch10PossibleArtists(string artistName)
+	private async Task<ArtistResponse> fetchNPossibleArtists(string artistName, int N)
 	{
-		//MUSICBRAINZ FETCH - gives a list of 10 possible artists that match the given artistName for the user to choose one
+		//MUSICBRAINZ FETCH - gives a list of N possible artists that match the given artistName for the user to choose one
 		try
 		{
-			var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"http://musicbrainz.org/ws/2/artist/?query={artistName}&fmt=json");
+			var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://musicbrainz.org/ws/2/artist/?query={artistName}&fmt=json");
 			var response = await httpClient.SendAsync(httpRequestMessage);
 			var returnObject = await response.Content.ReadFromJsonAsync<ArtistResponse>();
 
-			MyArtistList = returnObject.Artists.Take(10).ToList();
+			MyArtistList = returnObject.Artists.Take(N).ToList();
 			// artistList.DistinctBy((a) => a.Name);
 			return returnObject;
 		} catch (Exception e)
@@ -61,30 +97,36 @@
 	private async Task searchButton()
 	{
 		MyArtistList.Clear();
-		await fetch10PossibleArtists(userInputBandName);
+		await fetchNPossibleArtists(userInputBandName, 10);
 	}
 
+	GeniusAPIClient myClient = new();
+	List<string> songList = new List<string>();
+	List<SongDetails> songInfos = new List<SongDetails>();
+
 	private async Task selectArtistButton(Artist artist)
-	{	
+	{
+		startQuizButtonVisibility = "hidden";
+		artistSearchPrompt = "hidden";
+		fetchingLyricsHeading = "visible";
+		songInfos.Clear();
 		//reset
 		selectedArtist.IsSelected = false;
 		selectedArtist = artist;
 		selectedArtist.IsSelected = true;
 
 		//first get id of artist
-		GeniusAPIClient myClient = new();
 		string artistId = await myClient.GetArtistId(artist.Name);
 		Console.WriteLine($"ArtistID: {artistId}");
 
 		//use that id to retrieve list of 20 songs
-		List<string> songList = await myClient.GetSongTitles(artistId);
+		songList = await myClient.GetSongTitles(artistId);
 		foreach (string songTitle in songList)
 		{
 			Console.WriteLine(songTitle);
 		}
 
 		List<string> lyricSnippet = new();
-		List<SongDetails> songInfos = new();
 		//ID was wrong because I was using lyricSnippet.Count() - always 10. - replaced with int count below
 		int count = 0;
 		foreach(string songTitle in songList)
@@ -94,6 +136,7 @@
 			if (lyricSnippet.Count == 10) {
 				SongDetails thisSongInfo = new(count, songTitle, lyricSnippet);
 				songInfos.Add(thisSongInfo);
+				StateHasChanged();
 			}
 			if (songInfos.Count == 10)
 			{
@@ -107,10 +150,10 @@
 
 
 	}
-	
 
 
-	
+
+
 
 	private string styleForArtistList(bool isSelected)
 	{	
@@ -121,4 +164,21 @@
 		return "color:black";
 	}
 
+
+	[Parameter]
+	public EventCallback StartQuiz { get; set; }
+
+	private async Task goToQuiz()
+	{
+		await StartQuiz.InvokeAsync();
+	}
+
+	// private void resetArtistListComponent()
+	// {
+	// 	userInputBandName = "";
+	// 	artistSearchPrompt = "visible";
+	// 	fetchingLyricsHeading = "hidden";
+	// 	songInfos.Clear();
+	// 	MyArtistList.Clear();
+	// }
 }
