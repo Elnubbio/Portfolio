@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RcYfB5uI+bhWbmr2P2iCKLbQDNlSZMic1P/4Hv4n4+s=",
+  "Hash": "/vLJeaapz377lYEqwhUfyhida3lXW5pXoLpU+99ncTE=",
   "Source": "PortfolioWebAssem",
   "BasePath": "/",
   "Mode": "Root",
@@ -4328,6 +4328,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\wwwroot\\css\\main.css",
+      "SourceId": "PortfolioWebAssem",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "css/main.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\main.css"
     },
     {
       "Identity": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\wwwroot\\favicon.png",

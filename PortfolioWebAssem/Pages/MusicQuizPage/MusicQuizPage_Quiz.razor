@@ -2,26 +2,44 @@
 @using PortfolioWebAssem.Models
 
 <h1 class="text-center">Music Quiz</h1>
-<div class="d-flex justify-content-end">
-	<h2>Score: @score / @maxPossibleScore</h2>
+<div class="d-flex justify-content-center">
+	&#8203; @lastSong
+</div>
+
+<div class="d-flex">
+	<div class="flex-grow-1"></div>
+	<div class="">
+		<h2 class="">Score</h2>
+		<h1>@score / @maxPossibleScore</h1>
+	</div>
 </div>
 <div class="d-flex justify-content-end">
 	<h3>Song number: @displaySongNumber / @SongDetailsList.Count()</h3>
 </div>
 
-<div class="d-flex justify-content-center m-5">
-	<label>@currentLyrics</label>
+<div class="d-flex justify-content-center m-3">
+	&#8203; <label>@currentLyrics</label>
 </div>
 
-<div class="d-flex justify-content-center m-5">
-	<button @onclick="revealWord" class="btn btn-primary" style=" visibility: @revealWordButtonVisibility">Reveal next word</button>
+<div class="d-flex justify-content-center m-3">
+	<button @onclick="revealWord" class="btn btn-primary" style="visibility: @revealWordButtonVisibility">Reveal next word</button>
 </div>
 
-<div class="d-flex justify-content-center m-5">
+<div class="d-flex justify-content-center" style="visibility: @userControlsVisibility">
 	<input @bind="userInput"/>
-	<button @onclick="checkAnswer">Submit</button>
-	<button @onclick="nextSong">Skip</button>
+	<button @onclick="checkAnswer" class="btn btn-outline-light btn-sm">Submit</button>
+	<button @onclick="nextSong" class="btn btn-outline-light btn-sm">Skip</button>
 </div>
+<div class="d-flex justify-content-center">
+	<button @onclick="EndQuiz" class="btn btn-primary" style="visibility: @endQuizButtonVisibility ; font-size: 24px;">
+		End Quiz
+	</button>
+</div>
+
+
+@*
+	invisible character: &#8203;
+*@
 
 @code 
 {
@@ -32,14 +50,15 @@
 	//start at -1 if no song selected. go to 0 when game starts i.e song has been chosen and ready to display lyrics
 	int currentSongNumber = -1;
 	int displaySongNumber = 1;
-	string currentLyrics =  " ";
+	string currentLyrics = "";
 	int numberOfLyricsDisplaying = 0;
 	string revealWordButtonVisibility = "visible";
 	string userInput = "";
 	string userInputCheckString = "";
+	string userControlsVisibility = "visible";
+	string endQuizButtonVisibility = "hidden";
+	string lastSong = "";
 
-	// [Parameter]
-	// public List<List<string>> AllLyrics { get; set; }
 
 	[Parameter]
 	public EventCallback<int> GoToQuizOver { get; set; }
@@ -127,17 +146,23 @@
 	{
 		//called when the song is guessed correctly
 		//reset everything
-		currentLyrics = " ";
+		currentLyrics = "";
 		numberOfLyricsDisplaying = 0;
 		revealWordButtonVisibility = "visible";
 		userInput = "";
 
 		displaySongNumber++;
+		lastSong = "Last Song: " + SongDetailsList[currentSongNumber].SongName;
 		currentSongNumber++;
 		Console.WriteLine($"{currentSongNumber} / {SongDetailsList.Count()}");
 		if (isQuizOver())
 		{
-			await EndQuiz();
+			// await EndQuiz();
+
+			userControlsVisibility = "hidden";
+			endQuizButtonVisibility = "visible";
+			revealWordButtonVisibility = "hidden";
+			displaySongNumber--;
 		}
 	}
 

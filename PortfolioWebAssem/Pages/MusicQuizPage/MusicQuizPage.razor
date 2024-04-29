@@ -13,7 +13,7 @@
 @* <button @onclick="goToStart">Go to Start</button>
 <button @onclick="goToQuiz">Go to Quiz</button> *@
 
-<button @onclick="goToStart">Reset</button>
+<button @onclick="goToStart" class="btn btn-primary">Reset</button>
 
 @if (state == eMusicState.Over)
 {
@@ -26,7 +26,7 @@ else if (state == eMusicState.Quiz)
 else if (state == eMusicState.Start)
 {
 	<MusicQuizPage_MusicStart startQuizButtonVisibility=@startQuizButtonVisibility StartQuiz="goToQuiz" />
-	<ArtistList setSongs="setSongs" startQuizButtonVisibility=@startQuizButtonVisibility />
+	<ArtistList @ref="artistListComponent" setSongs="setSongs" startQuizButtonVisibility=@startQuizButtonVisibility />
 	
 }
 
@@ -34,6 +34,13 @@ else if (state == eMusicState.Start)
 
 
 @code{
+
+	ArtistList artistListComponent;
+	private void resetArtistListComp()
+	{
+		artistListComponent.resetArtistListComponent();
+	}
+
 	eMusicState state = eMusicState.Start;
 	int score = 0;
 	public enum eMusicState
@@ -49,6 +56,7 @@ else if (state == eMusicState.Start)
 		//reset
 		SongDetailsList.Clear();
 		startQuizButtonVisibility = "hidden";
+		resetArtistListComp();
 
 	}
 

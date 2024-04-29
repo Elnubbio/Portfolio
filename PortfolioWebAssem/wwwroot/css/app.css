@@ -101,3 +101,15 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+.clickable-buttonABC {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.4em 0.8em;
+    transition: border-color 0.25s;
+    width: 15rem;
+    margin: 0.3rem;
+    cursor: pointer;
+    box-shadow: 0 0 0;
+}

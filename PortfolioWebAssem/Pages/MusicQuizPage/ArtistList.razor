@@ -4,44 +4,83 @@
 
 @inject HttpClient httpClient;
 
+
+
 <br />
 <div class="container-fluid">
 	<div class="row">
 		@*blank column to center mid column. find a way to shrink this as column 3 expands*@
-		<div class="col-3"></div>
+		<div class="col-3 d-flex justify-content-center">
+			<div class="text-center">
+				<span>Search by:</span>
+				<div class="text-left">
+					<div class="d-flex justify-content-start">
+						<input type="radio" id="artist" checked="@(artistSearchSetting == "searchByArtist")" name="searchSetting" @onchange="@(() => {artistSearchSetting="searchByArtist"; artistSearchPromptString = "Search for an artist to begin fetching song snippets"; resetArtistListComponent();})">
+						@* <input type="radio" id="artist" name="searchSetting" @bind="artistSearchSetting"> *@
+						<label class="mx-1" for="artist">Artist</label>
+					</div>
+					<div class="d-flex justify-content-start">
+						<input type="radio" id="songTitle" checked="@(artistSearchSetting == "searchBySongTitle")" name="searchSetting" @onchange="@(() => {artistSearchSetting="searchBySongTitle"; artistSearchPromptString = "Search for a song title to begin fetching song snippets from that artist"; resetArtistListComponent();})">
+						@* <input type="radio" id="songTitle" name="searchSetting" @bind="artistSearchSetting"> *@
+						<label class="mx-1" for="songTitle">Song title</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<div class="col-6">
 			@* MAKE THIS GO INVISIBLE ONCE SEARCH BUTTON IS PRESSED *@
 			<div class="d-flex justify-content-center">
-				<span style="visibility: @artistSearchPrompt">Search for an artist to begin fetching song snippets</span>
+				<span class="text-center " style="visibility: @artistSearchPrompt ;">@artistSearchPromptString</span>
 			</div>
 			<br />
 
 			<div class="d-flex justify-content-center">
 				<br />
 				<input @bind="userInputBandName" />
-				<button @onclick="searchButton">Search</button>
+				<button @onclick="searchButton" class="btn btn-outline-light btn-sm">Search</button>
 			</div>
 
 			<br />
 			<div id="container1" class="d-flex justify-content-center">
 				@* TODO - make a grid instead of list *@
 				<ul>
-					@foreach (Artist artist in MyArtistList)
+					@if (artistSearchSetting == "searchByArtist")
 					{
-						<li>
-							<button @onclick="() => selectArtistButton(artist)">Choose</button>
-							<div class ="d-inline" style="@styleForArtistList(artist.IsSelected)">@artist.Name</div>
-						</li>
-						<br>
+						@foreach (Artist artist in MyArtistList)
+						{
+							<li>
+								<button @onclick="() => selectArtistButton(artist)" class="btn btn-outline-light btn-sm">Choose</button>
+								<div class ="d-inline" style="@styleForArtistList(artist.IsSelected)">
+									@artist.Name
+								</div>
+							</li>
+							<br>
+						}
+					}
+
+					@if (artistSearchSetting == "searchBySongTitle"){
+						@foreach(Recording recording in MyRecordingList){
+							<li>
+								<button @onclick="() => selectSongTitleButton(recording)" class="btn btn-outline-light btn-sm">Choose</button>
+								<div class="d-inline" style="@styleForArtistList(recording.IsSelected)">
+									@recording.title by @recording.artistcredit.First().name
+								</div>
+							</li>
+						}
 					}
 				</ul>
+
+
 			</div>
 		</div>
-		<div class="col-3">
+
+		<div class="col-3" style="pointer-events: none; visibility: @rightDivVisibility">
+			@*pointer-events: none is to fix div overlapping the search button - a problem on phones*@
 			@*MAKE VISIBLE ONLY WHEN selectedArtist.Name.Size>0*@
 			<span class="d-flex justify-content-center" style="visibility: @fetchingLyricsHeading">Fetching lyrics for @myClient.NewArtistName</span>
 			<br />
-			<div id="songsFoundContainer d-flex justify-content-center">
+			<div id="songsFoundContainer" class = "d-flex justify-content-center">
 				@if(songList.Count>0){
 				<ul>
 						@foreach (SongDetails songInfo in songInfos)
@@ -59,9 +98,10 @@
 
 
 @code {
+	string artistSearchPromptString = "Search for an artist to begin fetching song snippets";
 	[Parameter]
 	public List<Artist> MyArtistList { get; set; } = new();
-
+	public List<Recording> MyRecordingList { get; set; } = new();
 
 	[Parameter]
 	public EventCallback<List<SongDetails>> setSongs { get; set; }
@@ -74,12 +114,16 @@
 	private string userInputBandName = "";
 	string artistSearchPrompt = "visible";
 	string fetchingLyricsHeading = "hidden";
+	string rightDivVisibility = "hidden";
+
+	public string artistSearchSetting { get; set; } = "searchByArtist";
 
 	private async Task<ArtistResponse> fetchNPossibleArtists(string artistName, int N)
 	{
 		//MUSICBRAINZ FETCH - gives a list of N possible artists that match the given artistName for the user to choose one
 		try
 		{
+			Console.WriteLine("Search by possible artist");
 			var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://musicbrainz.org/ws/2/artist/?query={artistName}&fmt=json");
 			var response = await httpClient.SendAsync(httpRequestMessage);
 			var returnObject = await response.Content.ReadFromJsonAsync<ArtistResponse>();
@@ -89,7 +133,28 @@
 			return returnObject;
 		} catch (Exception e)
 		{
-			Console.WriteLine($"Could not find artist {artistName}");
+			Console.WriteLine($"Could not find artist: {artistName}");
+			return new();
+		}
+	}
+	private async Task<RecordingResponse> fetchNPossibleSongTitles(string songName, int N)
+	{
+		//MUSICBRAINZ FETCH - gives a list of N possible songs that match the given songName for the user to choose one
+		try
+		{
+			Console.WriteLine("Search by possible song title");
+			var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://musicbrainz.org/ws/2/recording/?query=\"{songName}\"&fmt=json");
+			var response = await httpClient.SendAsync(httpRequestMessage);
+			var returnObject = await response.Content.ReadFromJsonAsync<RecordingResponse>();
+
+			MyRecordingList = returnObject.Recordings.Take(N).ToList();
+			// artistList.DistinctBy((a) => a.Name);
+			Console.WriteLine(returnObject.Recordings.First().artistcredit.First().name);
+			return returnObject;
+		}
+		catch (Exception e)
+		{
+			Console.WriteLine($"Could not find song: {songName} Exception: {e}");
 			return new();
 		}
 	}
@@ -97,53 +162,141 @@
 	private async Task searchButton()
 	{
 		MyArtistList.Clear();
-		await fetchNPossibleArtists(userInputBandName, 10);
+		MyRecordingList.Clear();
+		Console.WriteLine(artistSearchSetting);
+		if (artistSearchSetting == "searchByArtist")
+	{
+			await fetchNPossibleArtists(userInputBandName, 10);
+		}
+		if (artistSearchSetting == "searchBySongTitle")
+		{
+			await fetchNPossibleSongTitles(userInputBandName, 10);
+		}
 	}
 
 	GeniusAPIClient myClient = new();
 	List<string> songList = new List<string>();
 	List<SongDetails> songInfos = new List<SongDetails>();
-
+	public string artistId = "";
 	private async Task selectArtistButton(Artist artist)
 	{
 		startQuizButtonVisibility = "hidden";
 		artistSearchPrompt = "hidden";
 		fetchingLyricsHeading = "visible";
+		rightDivVisibility = "visible";
 		songInfos.Clear();
 		//reset
 		selectedArtist.IsSelected = false;
 		selectedArtist = artist;
 		selectedArtist.IsSelected = true;
-
+		Console.WriteLine(artistSearchSetting);
 		//first get id of artist
-		string artistId = await myClient.GetArtistId(artist.Name);
+		if (artistSearchSetting == "searchByArtist")
+		{
+			artistId = await myClient.GetArtistIdUsingArtistName(artist.Name);
+			Console.WriteLine("Arrived at search by artist");
+		}
+		
 		Console.WriteLine($"ArtistID: {artistId}");
 
-		//use that id to retrieve list of 20 songs
-		songList = await myClient.GetSongTitles(artistId);
+
+
+		//use that id to retrieve list of X amount of songs - 50 for now
+		songList = await myClient.GetSongTitles(artistId, 50);
+
 		foreach (string songTitle in songList)
 		{
 			Console.WriteLine(songTitle);
 		}
-
+		//randomise
+		songList = songList.OrderBy(_ => Guid.NewGuid()).ToList();
 		List<string> lyricSnippet = new();
 		//ID was wrong because I was using lyricSnippet.Count() - always 10. - replaced with int count below
 		int count = 0;
 		foreach(string songTitle in songList)
 		{
 			// Console.WriteLine($"{artist.Name}, {songTitle}");
-			lyricSnippet = await LyricsAPIClient.FetchLyricsAsync(myClient.NewArtistName, songTitle);
-			if (lyricSnippet.Count == 10) {
-				SongDetails thisSongInfo = new(count, songTitle, lyricSnippet);
-				songInfos.Add(thisSongInfo);
-				StateHasChanged();
-			}
-			if (songInfos.Count == 10)
+			if (artistId != "")
 			{
-				await setSongs.InvokeAsync(songInfos);
-				return;
+				lyricSnippet = await LyricsAPIClient.FetchLyricsAsync(myClient.NewArtistName, songTitle);
+				if (lyricSnippet.Count == 10)
+				{
+					SongDetails thisSongInfo = new(count, songTitle, lyricSnippet);
+					songInfos.Add(thisSongInfo);
+					StateHasChanged();
+				}
+				if (songInfos.Count == 10)
+				{
+					await setSongs.InvokeAsync(songInfos);
+					return;
+				}
+				count++;
 			}
-			count++;
+		}
+
+		// return await getLyricSnippetAL(songList.FirstOrDefault());
+
+
+	}
+
+	private async Task selectSongTitleButton(Recording recording)
+	{
+		startQuizButtonVisibility = "hidden";
+		artistSearchPrompt = "hidden";
+		fetchingLyricsHeading = "visible";
+		rightDivVisibility = "visible";
+		songInfos.Clear();
+		//reset
+		// selectedArtist.IsSelected = false;
+		// selectedArtist = artist;
+		// selectedArtist.IsSelected = true;
+		Console.WriteLine(artistSearchSetting);
+		//first get id of artist
+		// if (artistSearchSetting == "searchByArtist")
+		// {
+		// 	artistId = await myClient.GetArtistIdUsingArtistName(artist.Name);
+		// 	Console.WriteLine("Arrived at search by artist");
+		// }
+		if (artistSearchSetting == "searchBySongTitle")
+		{
+			artistId = await myClient.GetArtistIdUsingSongTitle(recording);
+			Console.WriteLine("Arrived at search by song title");
+		}
+		Console.WriteLine($"ArtistID: {artistId}");
+
+
+
+		//use that id to retrieve list of X amount of songs - 50 for now
+		songList = await myClient.GetSongTitles(artistId, 50);
+
+		foreach (string songTitle in songList)
+		{
+			Console.WriteLine(songTitle);
+		}
+		//randomise
+		songList = songList.OrderBy(_ => Guid.NewGuid()).ToList();
+		List<string> lyricSnippet = new();
+		//ID was wrong because I was using lyricSnippet.Count() - always 10. - replaced with int count below
+		int count = 0;
+		foreach (string songTitle in songList)
+		{
+			// Console.WriteLine($"{artist.Name}, {songTitle}");
+			if (artistId != "")
+			{
+				lyricSnippet = await LyricsAPIClient.FetchLyricsAsync(myClient.NewArtistName, songTitle);
+				if (lyricSnippet.Count == 10)
+				{
+					SongDetails thisSongInfo = new(count, songTitle, lyricSnippet);
+					songInfos.Add(thisSongInfo);
+					StateHasChanged();
+				}
+				if (songInfos.Count == 10)
+				{
+					await setSongs.InvokeAsync(songInfos);
+					return;
+				}
+				count++;
+			}
 		}
 
 		// return await getLyricSnippetAL(songList.FirstOrDefault());
@@ -153,32 +306,27 @@
 
 
 
-
-
 	private string styleForArtistList(bool isSelected)
 	{	
 		if (isSelected)
 		{
 			return "color:red";
 		}
-		return "color:black";
+		return "color:rgba(255, 255, 255, 0.87)";
 	}
 
 
-	[Parameter]
-	public EventCallback StartQuiz { get; set; }
 
-	private async Task goToQuiz()
+	//pass this to main page
+	public void resetArtistListComponent()
 	{
-		await StartQuiz.InvokeAsync();
+		userInputBandName = "";
+		artistSearchPrompt = "visible";
+		fetchingLyricsHeading = "hidden";
+		rightDivVisibility = "hidden";
+		songInfos.Clear();
+		MyArtistList.Clear();
+		artistId = "";
 	}
 
-	// private void resetArtistListComponent()
-	// {
-	// 	userInputBandName = "";
-	// 	artistSearchPrompt = "visible";
-	// 	fetchingLyricsHeading = "hidden";
-	// 	songInfos.Clear();
-	// 	MyArtistList.Clear();
-	// }
 }

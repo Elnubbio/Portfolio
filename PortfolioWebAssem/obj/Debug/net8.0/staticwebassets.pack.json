@@ -121,6 +121,10 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Id": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\wwwroot\\css\\main.css",
+      "PackagePath": "staticwebassets\\css\\main.css"
+    },
+    {
       "Id": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
