@@ -1,4 +1,6 @@
-﻿namespace PortfolioWebAssem.Models2
+﻿using PortfolioWebAssem.Models;
+
+namespace PortfolioWebAssem.Models2
 {
 	public class SongsResponse
 	{
@@ -13,5 +15,7 @@
 	public class Song
 	{
 		public string title { get; set; }
+		public PrimaryArtist primary_artist { get; set; }
+
 	}
 }

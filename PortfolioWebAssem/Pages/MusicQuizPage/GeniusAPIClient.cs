@@ -18,83 +18,82 @@ namespace PortfolioWebAssem.Pages.MusicQuizPage
 	{
 		private readonly string _apiKey = "RpBaUk-iRsnuJJ8ozLN7ZCjSQyd-MU4Vnp2F2HxOllHYPRpVRgooijV63QEToIdT";
 		public string NewArtistName = "";
-
-		public async Task<string> GetArtistIdUsingArtistName(string artistName)
-		//returns Genius API's Artist ID for a selected artist.
+		
+		public async Task<string> GetArtistId(Object input)
 		{
-			string _fetchURLForArtistID = $"https://api.genius.com/search?q={artistName}&access_token={_apiKey}";
-			HttpClient httpClient = new();
-			string artistID = "";
-			Console.WriteLine("inside function");
-			try { 
-			//fetch
-			var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, _fetchURLForArtistID);
-			var response = await httpClient.SendAsync(httpRequestMessage);
-			var returnObject = await response.Content.ReadFromJsonAsync<ArtistIDResponse>();
-				Console.WriteLine();
-			double artistSimilarity;
-			//check if this artist has any songs
-			//if (returnObject.response.hits.Count > 0)
-			//{
-			//	artistID = returnObject.response.hits.FirstOrDefault().result.primary_Artist.id.ToString();
-			//	NewArtistName = returnObject.response.hits.FirstOrDefault().result.primary_Artist.name.ToString();
-			//}
+			//returns Genius API's Artist ID for a selected artist/recording
 
-			foreach (Hit hit in returnObject.response.hits)
+			HttpClient httpClient = new();
+			double similarityScore;
+			string _fetchURL;
+			string artistID = "";
+
+			//Search by Song Title
+			if (input is Recording recording)
+			{
+				_fetchURL = $"https://api.genius.com/search?q={recording.title}&access_token={_apiKey}";
+				try
 				{
-					artistSimilarity = Fuzz.Ratio(hit.result.primary_Artist.name, artistName) ;
-					//check if SELECTED artistName matches this artist name
-					Console.WriteLine($"Checking {hit.result.primary_Artist.name} against {artistName}, score: {artistSimilarity}");
-					if (artistSimilarity > 90)
+					var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, _fetchURL);
+					var response = await httpClient.SendAsync(httpRequestMessage);
+					var returnObject = await response.Content.ReadFromJsonAsync<ArtistIDResponse>();
+
+					foreach (Hit hit in returnObject.response.hits)
 					{
-						//found match - 90 in case of different spacing etc.
-						artistID = hit.result.primary_Artist.id.ToString();
-						NewArtistName = hit.result.primary_Artist.name.ToString();
-						break;
+						similarityScore = Fuzz.Ratio(hit.result.primary_Artist.name.ToLower(), recording.artistcredit.First().name.ToLower());
+						//check if SELECTED artistName matches this song's artist name
+						Console.WriteLine($"Checking {hit.result.primary_Artist.name} against {recording.artistcredit.First().name}, score: {similarityScore}");
+						if (similarityScore > 90)
+						{
+							//found match - 90 in case of different spacing etc.
+							artistID = hit.result.primary_Artist.id.ToString();
+							NewArtistName = hit.result.primary_Artist.name.ToString();
+							break;
+						}
 					}
 				}
-			} catch (Exception e)
-			{
-				Console.WriteLine($"Could not find artistID for {artistName}. Exception: {e}");
+				catch (Exception e)
+				{
+					Console.WriteLine($"Could not find artistID for {recording.artistcredit[0].name} - {recording.title}. Exception: {e}");
+				}
 			}
+
+			//Search by Artist Name
+			if (input is string artistName)
+			{
+				_fetchURL = $"https://api.genius.com/search?q={artistName}&access_token={_apiKey}";
+				try
+				{
+					//fetch
+					var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, _fetchURL);
+					var response = await httpClient.SendAsync(httpRequestMessage);
+					var returnObject = await response.Content.ReadFromJsonAsync<ArtistIDResponse>();
+
+					//fuzzy check 
+					foreach (Hit hit in returnObject.response.hits)
+					{
+						similarityScore = Fuzz.Ratio(hit.result.primary_Artist.name, artistName);
+						//check if SELECTED artistName matches this artist name
+						Console.WriteLine($"Checking {hit.result.primary_Artist.name} against {artistName}, score: {similarityScore}");
+						if (similarityScore > 90)
+						{
+							//found match, this is my Artist ID - 90 in case of different spacing etc.
+							artistID = hit.result.primary_Artist.id.ToString();
+							NewArtistName = hit.result.primary_Artist.name.ToString();
+							break;
+						}
+					}
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine($"Could not find artistID for {artistName}. Exception: {e}");
+				}
+			}
+
 			return artistID;
 		}
 
-		public async Task<string> GetArtistIdUsingSongTitle(Recording recording)
-		//returns Genius API's Artist ID for a selected song title + artist combo.
-		{
-			string _fetchURLForArtistID = $"https://api.genius.com/search?q={recording.title}&access_token={_apiKey}";
-			HttpClient httpClient = new();
-			string artistID = "";
 
-			try
-			{
-				//fetch
-				var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, _fetchURLForArtistID);
-				var response = await httpClient.SendAsync(httpRequestMessage);
-				var returnObject = await response.Content.ReadFromJsonAsync<ArtistIDResponse>();
-				double songTitleSimilarity;
-
-				foreach (Hit hit in returnObject.response.hits)
-				{
-					songTitleSimilarity = Fuzz.Ratio(hit.result.primary_Artist.name.ToLower(), recording.artistcredit.First().name.ToLower());
-					//check if SELECTED artistName matches this song's artist name
-					Console.WriteLine($"Checking {hit.result.title} against {recording.title}, score: {songTitleSimilarity}");
-					if (songTitleSimilarity > 90)
-					{
-						//found match - 90 in case of different spacing etc.
-						artistID = hit.result.primary_Artist.id.ToString();
-						NewArtistName = hit.result.primary_Artist.name.ToString();
-						break;
-					}
-				}
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine($"Could not find artistID for {recording.title}. Exception: ", e);
-			}
-			return artistID;
-		}
 
 		public async Task<List<string>> GetSongTitles(string artistId, int numberOfSongs)
 		//returns Genius API's Song Titles using Genius API's Artist ID. Returns numberOfSongs song titles - can be increased
@@ -102,9 +101,6 @@ namespace PortfolioWebAssem.Pages.MusicQuizPage
 			List<Song> songsFromFetch = new();
 			List<string> songTitles = new();
 			HttpClient httpClient = new();
-
-			//base case
-			//numberOfSongs = 20;
 
 			string _fetchURLForSongs = $"https://api.genius.com/artists/{artistId}/songs?sort=popularity&per_page={numberOfSongs}&access_token={_apiKey}";
 			//sometimes the api returns an empty string for artistId since response.hits is empty - see "1StepKloser", so skip fetch
@@ -122,7 +118,10 @@ namespace PortfolioWebAssem.Pages.MusicQuizPage
 					
 						foreach (Song song in songsFromFetch)
 						{
-							songTitles.Add(song.title);
+							if (song.primary_artist.id.ToString() == artistId)
+							{
+								songTitles.Add(song.title);
+							}
 						}
 					
 				}

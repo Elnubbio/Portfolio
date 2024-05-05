@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "D:\\Documents\\GitHub\\Portfolio\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\artistlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\artistlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\musicquizpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\musicquizpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\musicquizpage_quizover.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\musicquizpage_quizover.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\musicquizpage_quiz.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -15,40 +19,24 @@
       "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\musicquizpage_musicstart.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\models\\recordingresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\models\\recordingresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\models\\artistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\models\\artistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\models\\artistidresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\models\\artistidresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\artistlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\artistlist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\geniusapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\geniusapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\models\\recording.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\models\\recording.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\lyricsapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\lyricsapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\models\\artist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\models\\artist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\musicquizpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\musicquizpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\musicquizpage_quizover.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\musicquizpage_quizover.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|d:\\documents\\github\\portfolio\\portfoliowebassem\\pages\\musicquizpage\\musicbrainzapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F81071A7-1A0C-4F8F-A06E-6EEC8AA66B8A}|PortfolioWebAssem\\PortfolioWebAssem.csproj|solutionrelative:portfoliowebassem\\pages\\musicquizpage\\musicbrainzapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -57,18 +45,18 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "DockedWidth": 216,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 0,
               "Title": "MusicQuizPage.razor",
               "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage.razor",
               "RelativeDocumentMoniker": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage.razor",
               "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage.razor",
               "RelativeToolTip": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage.razor",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAAC0AAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-25T17:47:55.356Z",
               "IsPinned": true,
@@ -76,13 +64,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MusicQuizPage_MusicStart.razor",
               "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_MusicStart.razor",
               "RelativeDocumentMoniker": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_MusicStart.razor",
               "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_MusicStart.razor",
               "RelativeToolTip": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_MusicStart.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-21T22:31:49.077Z",
               "IsPinned": true,
@@ -90,13 +78,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MusicQuizPage_Quiz.razor",
               "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_Quiz.razor",
               "RelativeDocumentMoniker": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_Quiz.razor",
               "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_Quiz.razor",
               "RelativeToolTip": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_Quiz.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAAAfAAAA",
+              "ViewState": "AQIAAJMAAAAAAAAAAAAAACQAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-21T22:31:49.502Z",
               "IsPinned": true,
@@ -104,7 +92,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 1,
               "Title": "MusicQuizPage_QuizOver.razor",
               "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_QuizOver.razor",
               "RelativeDocumentMoniker": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicQuizPage_QuizOver.razor",
@@ -113,85 +101,33 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-21T22:31:49.99Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Artist.cs",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\Artist.cs",
-              "RelativeDocumentMoniker": "PortfolioWebAssem\\Models\\Artist.cs",
-              "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\Artist.cs",
-              "RelativeToolTip": "PortfolioWebAssem\\Models\\Artist.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T14:03:26.238Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RecordingResponse.cs",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\RecordingResponse.cs",
-              "RelativeDocumentMoniker": "PortfolioWebAssem\\Models\\RecordingResponse.cs",
-              "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\RecordingResponse.cs",
-              "RelativeToolTip": "PortfolioWebAssem\\Models\\RecordingResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T14:02:55.412Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ArtistResponse.cs",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\ArtistResponse.cs",
-              "RelativeDocumentMoniker": "PortfolioWebAssem\\Models\\ArtistResponse.cs",
-              "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\ArtistResponse.cs",
-              "RelativeToolTip": "PortfolioWebAssem\\Models\\ArtistResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T13:31:24.305Z",
+              "Title": "main.css",
+              "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\wwwroot\\css\\main.css",
+              "RelativeDocumentMoniker": "PortfolioWebAssem\\wwwroot\\css\\main.css",
+              "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\wwwroot\\css\\main.css",
+              "RelativeToolTip": "PortfolioWebAssem\\wwwroot\\css\\main.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-05-05T17:03:57.771Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ArtistIDResponse.cs",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\ArtistIDResponse.cs",
-              "RelativeDocumentMoniker": "PortfolioWebAssem\\Models\\ArtistIDResponse.cs",
-              "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\ArtistIDResponse.cs",
-              "RelativeToolTip": "PortfolioWebAssem\\Models\\ArtistIDResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T13:22:29.23Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "ArtistList.razor",
               "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\ArtistList.razor",
               "RelativeDocumentMoniker": "PortfolioWebAssem\\Pages\\MusicQuizPage\\ArtistList.razor",
               "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\ArtistList.razor",
               "RelativeToolTip": "PortfolioWebAssem\\Pages\\MusicQuizPage\\ArtistList.razor",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACEAAABiAAAA",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAAAGYAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-21T22:31:46.991Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Recording.cs",
-              "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\Recording.cs",
-              "RelativeDocumentMoniker": "PortfolioWebAssem\\Models\\Recording.cs",
-              "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Models\\Recording.cs",
-              "RelativeToolTip": "PortfolioWebAssem\\Models\\Recording.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T14:04:25.348Z",
               "EditorCaption": ""
             },
             {
@@ -202,22 +138,35 @@
               "RelativeDocumentMoniker": "PortfolioWebAssem\\Pages\\MusicQuizPage\\GeniusAPIClient.cs",
               "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\GeniusAPIClient.cs",
               "RelativeToolTip": "PortfolioWebAssem\\Pages\\MusicQuizPage\\GeniusAPIClient.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAADwv00AAAAzAAAA",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAowBYAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-21T22:31:47.686Z",
+              "WhenOpened": "2024-05-02T18:35:28.297Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "LyricsAPIClient.cs",
               "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\LyricsAPIClient.cs",
               "RelativeDocumentMoniker": "PortfolioWebAssem\\Pages\\MusicQuizPage\\LyricsAPIClient.cs",
               "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\LyricsAPIClient.cs",
               "RelativeToolTip": "PortfolioWebAssem\\Pages\\MusicQuizPage\\LyricsAPIClient.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAFAAAA",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAowBwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-21T22:31:48.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MusicbrainzAPIClient.cs",
+              "DocumentMoniker": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicbrainzAPIClient.cs",
+              "RelativeDocumentMoniker": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicbrainzAPIClient.cs",
+              "ToolTip": "D:\\Documents\\GitHub\\Portfolio\\PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicbrainzAPIClient.cs",
+              "RelativeToolTip": "PortfolioWebAssem\\Pages\\MusicQuizPage\\MusicbrainzAPIClient.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-05T20:52:45.709Z",
               "EditorCaption": ""
             }
           ]

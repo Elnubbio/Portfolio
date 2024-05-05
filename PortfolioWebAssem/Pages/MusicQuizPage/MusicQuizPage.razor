@@ -25,8 +25,8 @@ else if (state == eMusicState.Quiz)
 }
 else if (state == eMusicState.Start)
 {
-	<MusicQuizPage_MusicStart startQuizButtonVisibility=@startQuizButtonVisibility StartQuiz="goToQuiz" />
-	<ArtistList @ref="artistListComponent" setSongs="setSongs" startQuizButtonVisibility=@startQuizButtonVisibility />
+	<MusicQuizPage_MusicStart @ref="musicStartComponent" startQuizButtonVisibility=@startQuizButtonVisibility StartQuiz="goToQuiz" />
+	<ArtistList @ref="artistListComponent" setSongs="setSongs" startQuizButtonVisibility=@startQuizButtonVisibility/>
 	
 }
 
@@ -36,6 +36,7 @@ else if (state == eMusicState.Start)
 @code{
 
 	ArtistList artistListComponent;
+	MusicQuizPage_MusicStart musicStartComponent;
 	private void resetArtistListComp()
 	{
 		artistListComponent.resetArtistListComponent();
@@ -71,35 +72,6 @@ else if (state == eMusicState.Start)
 		state = eMusicState.Over;
 	}
 
-	// private async Task resetArtistList()
-	// {
-		
-	// }
-
-	//TESTING SONG - replace artist with user selection + song with random song from geniusAPI fetched list
-	// string currentArtist = "linkin-park";
-	// string currentSong = "breaking-the-habit";
-
-	// List<string> LyricsFromFetch = new();
-	// protected override async Task OnInitializedAsync()
-	// {	
-	// 	LyricsFromFetch = await fetchLyricsAsync(currentArtist, currentSong);
-	// }
-
-
-
-
-
-	// private async Task<List<string>> fetchLyricsAsync(string artistName, string songName) {
-	// 	//LYRICS API FETCH - gives the lyrics for a given artist and song
-	// 	//Maybe change this out for the genius api? but then have to rewrite getLyricSnippet
-	// 	//possible problem with mismatch between geniusAPI song name and this lyric's api song name
-	// 	var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, $"https://api.lyrics.ovh/v1/{artistName}/{songName}");
-	// 	var response = await httpClient.SendAsync(httpRequestMessage);
-	// 	return await getLyricSnippet(await response.Content.ReadAsStringAsync());
-	// }
-
-
 	string startQuizButtonVisibility = "hidden";
 	List<SongDetails> SongDetailsList = new();
 	private async Task setSongs(List<SongDetails> songDetailsList)
@@ -109,7 +81,9 @@ else if (state == eMusicState.Start)
 		{
 			startQuizButtonVisibility = "visible";
 		}
+		else startQuizButtonVisibility = "hidden";
 
+		//Show song lyric snippets in console
 		foreach(SongDetails songInfo in songDetailsList)
 		{
 			foreach(string word in songInfo.Lyrics)

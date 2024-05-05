@@ -9,3 +9,7 @@
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
 }
+
+.vertical-align{
+    align-items: center;
+}
