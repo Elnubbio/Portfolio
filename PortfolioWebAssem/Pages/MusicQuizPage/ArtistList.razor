@@ -16,7 +16,7 @@
 
 				<span>Search for artist by:</span>
 				<div class="container" style="">
-					<div class="row vertical-align"  >
+					<div class="row vertical-align">
 						<div>
 							<input class="" type="radio" id="artist" checked="@(artistSearchSetting == "searchByArtist")" name="searchSetting" @onchange="@(() => {artistSearchSetting="searchByArtist"; artistSearchPromptString = "Search for an artist to begin fetching song snippets"; resetArtistListComponent();})">
 							<label class="mx-1" for="artist">Artist name</label>
@@ -97,22 +97,22 @@
 		<div class="col-4">
 			@* MAKE THIS GO INVISIBLE ONCE SEARCH BUTTON IS PRESSED *@
 			<div class="d-flex justify-content-center">
-				<span class="text-center" style="visibility: @artistSearchPrompt ;">@artistSearchPromptString</span>
+				<span class="text-center" style="visibility: @artistSearchPromptVisibility ;">@artistSearchPromptString</span>
 			</div>
 			<br />
 
-			<div class="d-flex justify-content-center">
-				<br />
-				@* <form @onsubmit="searchButton"> *@
+			@* <div class="d-flex justify-content-center"> *@
+			<br />
+			<form class="d-flex justify-content-center" @onsubmit="searchButton">
 				<input @bind="userInputBandName"  />
 				<button @onclick="searchButton" class="btn btn-outline-light btn-sm">Search</button>
-				@* </form> *@
-			</div>
+				</form>
+			@* </div> *@
 
 			<br />
 			<div id="SearchResultsContainer" class="d-flex justify-content-center">
 				@* TODO - make a grid instead of list *@
-				<ul>
+				<ul style="padding:0px;">
 					@if (artistSearchSetting == "searchByArtist")
 					{
 						@foreach (Artist artist in MyArtistList)
@@ -148,11 +148,11 @@
 		<div class="col-4" style="pointer-events: none; visibility: @rightDivVisibility">
 			@*pointer-events: none is to fix div overlapping the search button - a problem on phones*@
 			@*MAKE VISIBLE ONLY WHEN selectedArtist.Name.Size>0*@
-			<span class="d-flex justify-content-center" style="visibility: @fetchingLyricsHeading">Fetching lyrics for @myClient.NewArtistName</span>
+			<span class="d-flex justify-content-center" style="visibility: @fetchingLyricsHeadingVisibility">Fetching lyrics for @GeniusAPIClient.NewArtistName</span>
 			
 			<div id="songsFoundContainer" class="d-flex justify-content-center my-3">
 				@if(songList.Count>0){
-					<ul>
+					<ul style="padding:0px;">
 						@foreach (SongDetails songInfo in songInfos)
 						{
 							<li>
@@ -174,28 +174,25 @@
 
 
 @code {
-	string artistSearchPromptString = "Search for an artist to begin fetching song snippets";
-	int numberOfSongsToFetch = 50;
-	int numberOfSongsSelected = 10;
+	//------------------------------VARIABLES------------------------------
 
-	public List<Artist> MyArtistList { get; set; } = new();
-	public List<Recording> MyRecordingList { get; set; } = new();
-
+	//----------PARAMETERS----------
 	[Parameter]
 	public EventCallback<List<SongDetails>> setSongs { get; set; }
 
 	[Parameter]
 	public string startQuizButtonVisibility { get; set; }
 
-	private Artist selectedArtist = new();
+	//--------------------LEFT DIV--------------------
 
-	private string userInputBandName = "";
-	string artistSearchPrompt = "visible";
-	string fetchingLyricsHeading = "hidden";
-	string rightDivVisibility = "hidden";
-
+	//----------SEARCH BY / RADIO BUTTONS----------
 	public string artistSearchSetting { get; set; } = "searchByArtist";
+	
+	//----------SLIDER VALUES----------
+	int numberOfSongsToFetch = 50;
+	int numberOfSongsSelected = 10;
 
+	//----------SWITCHES----------
 	public Dictionary<string, bool> Settings = new Dictionary<string, bool>
 	{
 		{ "startOnly" , false},
@@ -204,6 +201,38 @@
 		{ "infiniteMode", false},
 		{ "???", false}
 	};
+
+	//--------------------MIDDLE DIV--------------------
+	
+	//----------PROMPTS----------
+	string artistSearchPromptString = "Search for an artist to begin fetching song snippets";
+	string artistSearchPromptVisibility = "visible";
+
+	//----------INPUT----------
+	private string userInputBandName = "";
+
+	//--------------------MIDDLE DIV--------------------
+
+	//----------PROMPTS----------
+	string fetchingLyricsHeadingVisibility = "hidden";
+	string rightDivVisibility = "hidden";
+
+
+
+
+	List<string> songList = new();
+	List<SongDetails> songInfos = new();
+	public List<Artist> MyArtistList { get; set; } = new();
+	public List<Recording> MyRecordingList { get; set; } = new();
+	public string artistId = "";
+
+	private Artist selectedArtist = new();
+
+	
+
+	
+
+	
 
 	private async Task searchButton()
 	{
@@ -223,16 +252,13 @@
 		}
 	}
 
-	GeniusAPIClient myClient = new();
-	List<string> songList = new();
-	List<SongDetails> songInfos = new();
-	public string artistId = "";
+	
 
 
 	private async Task chooseButton(Object input)
 	{
-		artistSearchPrompt = "hidden";
-		fetchingLyricsHeading = "visible";
+		artistSearchPromptVisibility = "hidden";
+		fetchingLyricsHeadingVisibility = "visible";
 		rightDivVisibility = "visible";
 		songInfos.Clear();
 		setSongs.InvokeAsync(songInfos);
@@ -240,24 +266,24 @@
 		//Chose to search by song title
 		if (input is Recording recording)
 		{
-			myClient.NewArtistName = recording.artistcredit[0].name;
-			artistId = await myClient.GetArtistId(recording);
+			GeniusAPIClient.NewArtistName = recording.artistcredit[0].name;
+			artistId = await GeniusAPIClient.GetArtistId(recording);
 			Console.WriteLine($"ArtistID: {artistId}");
 		}
 
 		//Chose to search by artist
 		if (input is Artist artist)
 		{
-			myClient.NewArtistName = artist.Name;
+			GeniusAPIClient.NewArtistName = artist.Name;
 			selectedArtist.IsSelected = false;
 			selectedArtist = artist;
 			selectedArtist.IsSelected = true;
-			artistId = await myClient.GetArtistId(artist.Name);
+			artistId = await GeniusAPIClient.GetArtistId(artist.Name);
 			Console.WriteLine($"ArtistID: {artistId}");
 		}
 
 		//use that id to retrieve list of X amount of songs - 50 for now
-		songList = await myClient.GetSongTitles(artistId, 50);
+		songList = await GeniusAPIClient.GetSongTitles(artistId, 50);
 
 		//print all songs to console for testing
 		foreach (string songTitle in songList)
@@ -275,7 +301,7 @@
 			// Console.WriteLine($"{artist.Name}, {songTitle}");
 			if (artistId != "")
 			{
-				lyricSnippet = await LyricsAPIClient.FetchLyricsAsync(myClient.NewArtistName, songTitle);
+				lyricSnippet = await LyricsAPIClient.FetchLyricsAsync(GeniusAPIClient.NewArtistName, songTitle);
 				if (lyricSnippet.Count == 10)
 				{
 					SongDetails thisSongInfo = new(count, songTitle, lyricSnippet);
@@ -304,14 +330,14 @@
 	public void resetArtistListComponent()
 	{
 		userInputBandName = "";
-		artistSearchPrompt = "visible";
+		artistSearchPromptVisibility = "visible";
 		resetLeftDiv();
 		resetRightDiv();
 	}
 
 	public void resetRightDiv()
 	{
-		fetchingLyricsHeading = "hidden";
+		fetchingLyricsHeadingVisibility = "hidden";
 		rightDivVisibility = "hidden";
 		startQuizButtonVisibility = "hidden";
 		songInfos.Clear();

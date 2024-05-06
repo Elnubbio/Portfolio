@@ -14,12 +14,12 @@ using FuzzySharp;
 
 namespace PortfolioWebAssem.Pages.MusicQuizPage
 {
-	public class GeniusAPIClient
+	public static class GeniusAPIClient
 	{
-		private readonly string _apiKey = "RpBaUk-iRsnuJJ8ozLN7ZCjSQyd-MU4Vnp2F2HxOllHYPRpVRgooijV63QEToIdT";
-		public string NewArtistName = "";
+		private static string _apiKey = "RpBaUk-iRsnuJJ8ozLN7ZCjSQyd-MU4Vnp2F2HxOllHYPRpVRgooijV63QEToIdT";
+		public static string NewArtistName = "";
 		
-		public async Task<string> GetArtistId(Object input)
+		public static async Task<string> GetArtistId(Object input)
 		{
 			//returns Genius API's Artist ID for a selected artist/recording
 
@@ -95,7 +95,7 @@ namespace PortfolioWebAssem.Pages.MusicQuizPage
 
 
 
-		public async Task<List<string>> GetSongTitles(string artistId, int numberOfSongs)
+		public static async Task<List<string>> GetSongTitles(string artistId, int numberOfSongs)
 		//returns Genius API's Song Titles using Genius API's Artist ID. Returns numberOfSongs song titles - can be increased
 		{
 			List<Song> songsFromFetch = new();

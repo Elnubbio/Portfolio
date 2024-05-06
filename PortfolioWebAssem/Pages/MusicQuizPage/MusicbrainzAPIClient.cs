@@ -4,6 +4,8 @@ using System.Net.Http.Json;
 
 namespace PortfolioWebAssem.Pages.MusicQuizPage
 {
+	//API Client for fetching possible artists to choose from
+
 	public static class MusicbrainzAPIClient
 	{
 		static HttpClient httpClient = new();

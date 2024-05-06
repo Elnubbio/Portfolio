@@ -9,8 +9,8 @@
 <div class="d-flex">
 	<div class="flex-grow-1"></div>
 	<div class="">
-		<h2 class="">Score</h2>
-		<h1>@score / @maxPossibleScore</h1>
+		<h2 class="d-flex justify-content-center">Score</h2>
+		<h1 class="d-flex justify-content-center">@score / @maxPossibleScore</h1>
 	</div>
 </div>
 <div class="d-flex justify-content-end">
@@ -25,11 +25,11 @@
 	<button @onclick="revealWord" class="btn btn-primary" style="visibility: @revealWordButtonVisibility">Reveal next word</button>
 </div>
 
-<div class="d-flex justify-content-center" style="visibility: @userControlsVisibility">
+<form class="d-flex justify-content-center" style="visibility: @userControlsVisibility" @onsubmit="checkAnswer">
 	<input @bind="userInput"/>
 	<button @onclick="checkAnswer" class="btn btn-outline-light btn-sm">Submit</button>
 	<button @onclick="nextSong" class="btn btn-outline-light btn-sm">Skip</button>
-</div>
+</form>
 <div class="d-flex justify-content-center">
 	<button @onclick="EndQuiz" class="btn btn-primary" style="visibility: @endQuizButtonVisibility ; font-size: 24px;">
 		End Quiz

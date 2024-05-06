@@ -2,6 +2,7 @@
 
 namespace PortfolioWebAssem.Pages.MusicQuizPage
 {
+	//API Client for fetching lyrics
 	public static class LyricsAPIClient
 	{
 		//TODO - replace this api with custom web scraping some random lyric website, this api has too many BIG songs without lyrics
@@ -37,14 +38,25 @@ namespace PortfolioWebAssem.Pages.MusicQuizPage
 			string pattern = "\"lyrics\".*?\\n|\\[[^\\]]*\\]";
 			Regex regex = new Regex(pattern);
 			string result = regex.Replace(response, "");
-
+			
 			//remove start - could redo regex filter to remove this part
 			int returnIndex = result.IndexOf("\\r") + 2;
 			string stringWithoutStart = result.Substring(returnIndex);
 			//remove end - remove "}
 			string stringWithoutEnd = stringWithoutStart.Substring(0, stringWithoutStart.Length - 2);
+
+			//remove Chorus: (Chorus) Singername: etc.
+			string pattern2 = @"\{[^}]*\}|[A-Z]\w*:|\(.+?\+.+?\)|\((?:[Cc]horus|[Vv]erse|[Rr]efrain|[Ii]ntermediate|[Bb]ridge|[Rr]epeat)(?:,?\s+\w+)?\)";
+			Regex regex2 = new Regex(pattern2);
+			string result2 = regex2.Replace(stringWithoutEnd, "");
+			
+			//Tidy up empty parentheses
+			string pattern3 = @"\(\)";
+			Regex regex3 = new Regex(pattern3);
+			string result3 = regex3.Replace(result2, "");
+			
 			//split strings to list
-			List<string> lyricLinesWithNewLines = stringWithoutEnd.Split("\\n").ToList();
+			List<string> lyricLinesWithNewLines = result3.Split("\\n").ToList();
 			List<string> songLyricsSentences = lyricLinesWithNewLines.Where((s) => s.Length > 1).ToList();
 
 			//Console.WriteLine(response);
